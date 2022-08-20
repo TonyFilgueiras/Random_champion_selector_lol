@@ -1,8 +1,7 @@
 from random import randint
-from xmlrpc.client import boolean
 
 class Champion:
-    def __init__(self, name, damage_type:list, top:boolean, jg:boolean, mid:boolean, bot:boolean, sup:boolean):
+    def __init__(self, name, damage_type:list, top:bool, jg:bool, mid:bool, bot:bool, sup:bool):
         self.name = name
         self.damage_type = damage_type
         self.top = top
