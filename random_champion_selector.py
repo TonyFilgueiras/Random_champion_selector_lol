@@ -1,182 +1,178 @@
 from random import randint
 
 class Champion:
-    def __init__(self, name, damage_type:list, top:bool, jg:bool, mid:bool, bot:bool, sup:bool):
+    def __init__(self, name, damage_type:list, lane:list):
         self.name = name
         self.damage_type = damage_type
-        self.top = top
-        self.jg = jg
-        self.mid = mid
-        self.bot = bot
-        self.sup = sup
+        self.lane = lane
 
 def error():
     print("Insert a valid input!!")
 
 list_of_champions = [
-    Champion("Zeri", ["ad", "ap"], False, False, True, True,False),
-    Champion("Vex", ["ap"], False, False, True, True, True),
-    Champion("Akshan", ["ad"], False,False,True,True,False),
-    Champion("Samira", ["ad"], False, False, True, True, False),
-    Champion("Seraphine", ["ap"], False, False, True, True, True),
-    Champion("Rell", ["ap"], False, False, False, False, True),
-    Champion("Viego", ["ad"], False, True, False, False, False),
-    Champion("Gwen", ["ap"], True, False, False, False, False),
-    Champion("Pyke", ["ad"], False, False, True, False, True),
-    Champion("Neeko", ["ap"], False, False, True, True, True),
-    Champion("Sylas", ["ap"], True, True, True, False, False),
-    Champion("Yuumi", ["ap"], False, False, False, False, True),
-    Champion("Qiyana", ["ad"], False, False, True, False, False),
-    Champion("Senna", ["ad"], False, False, False, True, True),
-    Champion("Aphelios", ["ad"], False, False, False, True, False),
-    Champion("Sett", ["ad"], True, False, False, False, True),
-    Champion("Lillia", ["ap"], True, True, True, False, False),
-    Champion("Yone", ["ad"], True, True, True, False, False),
-    Champion("Taliyah", ["ap"], False, True, True, True, True),
-    Champion("Kled", ["ad"], True, False, True, False, False),
-    Champion("Ivern", ["ap"], False, True, False, False, True),
-    Champion("Camille", ["ad"], True, True, False, False, False),
-    Champion("Rakan", ["ap"], False, False, False, False, True),
-    Champion("Xayah", ["ad"], False, False, False, True, False),
-    Champion("Kayn", ["ad"], False, True, False, False, False),
-    Champion("Ornn", ["ad"], True, False, False, False, False),
-    Champion("Zoe", ["ap"], False, False, True, True, True),
-    Champion("Kai'sa", ["ad", "ap"], False, False, True, True, False),
-    Champion("Yasuo", ["ad"], False, False, True, True, False),
-    Champion("Yorick", ["ad"], True, False, False, False, False),
-    Champion("Zac", ["ap"], False, True, False, False, False),
-    Champion("Zed", ["ad"], False, False, True, False, False),
-    Champion("Ziggs", ["ap"], False, False, True, True, False),
-    Champion("Zilean", ["ap"], False, False, True, False, True),
-    Champion("Zyra", ["ap"], False, False, True, False, True),
-    Champion("Bard", ["ap"], False, False, False, False, True),
-    Champion("Ekko", ["ap"], False, True, True, False, False),
-    Champion("Tahm kench", ["ap"], True, False, False, False, True),
-    Champion("Kindred", ["ad"], False, True, True, True, False),
-    Champion("Illaoi", ["ad"], True, False, False, False, False),
-    Champion("Jhin", ["ad"], False, False, False, True, False),
-    Champion("Aurelion Sol", ["ap"], False, False, True, True, True),
-    Champion("Twitch", ["ad", "ap"], False, False, False, True, False),
-    Champion("Udyr", ["ad", "ap"], False, True, False, False, False),
-    Champion("Urgot", ["ad"], True, False, False, False, False),
-    Champion("Varus", ["ad", "ap"], False, False, True, True, False),
-    Champion("Vayne", ["ad"], True, False, False, True, False),
-    Champion("Veigar", ["ap"], True, False, True, True, False),
-    Champion("Vel'Koz", ["ap"], False, False, True, False, True),
-    Champion("Vi", ["ad"], True, True, False, False, False),
-    Champion("Viktor", ["ap"], False, False, True, False, False),
-    Champion("Vladimir", ["ap"], True, False, True, False, False),
-    Champion("Volibear", ["ad", "ap"], True, True, False, False, False),
-    Champion("Warwick", ["ad"], True, True, False, False, False),
-    Champion("Wukong", ["ad"], True, True, True, False, False),
-    Champion("Xerath", ["ap"], False, False, True, False, True),
-    Champion("Xin Zhao", ["ad"], True, True, True, False, False),
-    Champion("Swain", ["ap"], True, False, True, True, True),
-    Champion("Syndra", ["ap"], False, False, True, True, False),
-    Champion("Talon", ["ad"], False, False, True, False, False),
-    Champion("Taric", ["ap"], True, False, False, False, True),
-    Champion("Teemo", ["ap"], True, False, False, True, True),
-    Champion("Thresh", ["ap"], False, False, False, False, True),
-    Champion("Tristana", ["ad"], False, False, False, True, False),
-    Champion("Trundle", ["ad"], True, True, False, False, False),
-    Champion("Tryndamere", ["ad"], True, False, False, False, False),
-    Champion("Twisted Fate", ["ad", "ap"], False, False, True, True, False),
-    Champion("Renekton", ["ad"], True, False, True, False, False),
-    Champion("Rengar", ["ad"], False, True, False, False, False),
-    Champion("Riven", ["ad"], True, False, False, False, False),
-    Champion("Rumble", ["ap"], True, False, True, False, False),
-    Champion("Ryze", ["ap"], False, False, True, True, False),
-    Champion("Sejuani", ["ap"], True, True, False, False, False),
-    Champion("Shaco", ["ad", "ap"], False, True, False, False, False),
-    Champion("Shen", ["ad"], True, False, False, False, True),
-    Champion("Shyvana", ["ad", "ap"], False, True, False, False, False),
-    Champion("Singed", ["ap"], True, False, False, False, False),
-    Champion("Sion", ["ad"], True, False, False, False, False),
-    Champion("Sivir", ["ad"], False, False, True, True, False),
-    Champion("Skarner", ["ad", "ap"], False, True, False, False, False),
-    Champion("Sona", ["ap"], False, False, True, True, True),
-    Champion("Soraka", ["ap"], False, False, False, False, True),
-    Champion("Mordekaiser", ["ap"], True, False, False, False, False),
-    Champion("Morgana", ["ap"], False, False, True, False, True),
-    Champion("Nami", ["ap"], False, False, False, False, True),
-    Champion("Nasus", ["ad", "ap"], True, False, False, False, False),
-    Champion("Nautilus", ["ap"], False, False, False, False, True),
-    Champion("Nidalee", ["ap"], False, True, True, True, True),
-    Champion("Nocturne", ["ad"], True, True, True, False, False),
-    Champion("Nunu", ["ap"], True, True, True, False, False),
-    Champion("Olaf", ["ad"], True, True, False, False, False),
-    Champion("Orianna", ["ap"], False, False, True, True, True),
-    Champion("Pantheon", ["ad"], True, True, True, False, True),
-    Champion("Poppy",["ad"], True, True, False, False, True),
-    Champion("Quinn", ["ad"], True, False, False, True, False),
-    Champion("Rammus", ["ap"], False, True, False, False, False),
-    Champion("Rek'Sai", ["ad"], False, True, False, False, False),
-    Champion("Leona", ["ad", "ap"], False, False, False, False, True),
-    Champion("Lissandra", ["ap"], False, False, True, True, False),
-    Champion("Lucian", ["ad"], False, False, True, True, False),
-    Champion("Lulu", ["ad", "ap"], False, False, True, True, True),
-    Champion("Lux", ["ap"], False, False, True, True, True),
-    Champion("Malphite", ["ap"], True, False, False, False, False),
-    Champion("Malzahar", ["ap"], False, False, True, False, False),
-    Champion("Maokai", ["ap"], True, False, False, False, True),
-    Champion("Master Yi", ["ad"], False, True, False, False, False),
-    Champion("Miss Fortune", ["ad"], False, False, False, True, False),
-    Champion("Karma", ["ap"], False, False, True, False, True),
-    Champion("Karthus", ["ap"], False, True, True, True, False),
-    Champion("Kassadin", ["ap"], False, False, True, False, False),
-    Champion("Katarina", ["ad", "ap"], False, False, True, False, False),
-    Champion("Kayle", ["ad", "ap"], True, False, True, False, True),
-    Champion("Kennen", ["ap"], True, False, True, True, False),
-    Champion("Kha'Zix", ["ad"], False, True, False, False, False),
-    Champion("Kog'Maw", ["ad", "ap"], False, False, True, True, False),
-    Champion("LeBlanc", ["ap"], False, False, True, False, False),
-    Champion("Lee Sin", ["ad"], False, True, False, False, True),
-    Champion("Evelynn", ["ap"], False, True, False, False, False),
-    Champion("Ezreal", ["ad", "ap"], False, False, True, True, False),
-    Champion("Fiddlesticks", ["ap"], False, True, False, False, False),
-    Champion("Fiora", ["ad"], True, False, False, False, False),
-    Champion("Fizz", ["ap"], False, False, True, False, False),
-    Champion("Galio", ["ap"], True, False, True, False, True),
-    Champion("Gangplank", ["ad"], True, False, False, False, False),
-    Champion("Garen", ["ad"], True, False, False, False, False),
-    Champion("Gnar", ["ad"], True, False, False, True, False),
-    Champion("Gragas", ["ap"], False, True, False, False, False),
-    Champion("Graves", ["ad"], False, True, False, False, False),
-    Champion("Hecarim", ["ad"], False, True, False, False, False),
-    Champion("Heimerdinger", ["ap"], False, False, True, True, False),
-    Champion("Irelia", ["ad"], True, False, True, False, False),
-    Champion("Janna", ["ap"], False, False, False, False, True),
-    Champion("Jarvan IV", ["ad"], False, True, False, False, False),
-    Champion("Jax", ["ad"], True, False, False, False, False),
-    Champion("Jayce", ["ad"], True, False, True, True, False),
-    Champion("Jinx", ["ad"], False, False, False, True, False),
-    Champion("Kalista", ["ad"], False, False, False, True, False),
-    Champion("Aatrox", ["ad"], True, False, False, False, False),
-    Champion("Ahri", ["ap"], False, False, True, False, True),
-    Champion("Akali", ["ap"], True, False, True, False, False),
-    Champion("Alistar", ["ap"], False, False, False, False, True),
-    Champion("Amumu", ["ap"], True, True, False, False, True),
-    Champion("Anivia", ["ap"], False, False, True, True, True),
-    Champion("Annie", ["ap"], False, False, True, False, True),
-    Champion("Ashe", ["ad"], False, False, False, True, True),
-    Champion("Azir", ["ap"], False, False, True, False, False),
-    Champion("Blitzcrank", ["ap"], False, False, False, False, True),
-    Champion("Brand", ["ap"], False, False, True, False, True),
-    Champion("Braum", ["ap"], False, False, False, False, True),
-    Champion("Caitlyn", ["ad"], False, False, False, True, False),
-    Champion("Cassiopeia", ["ap"], False, False, True, True, False),
-    Champion("Cho'Gath", ["ap"], True, False, False, False, False),
-    Champion("Corki", ["ad", "ap"], False, False, True, True, False),
-    Champion("Darius", ["ad"], True, False, False, False, False),
-    Champion("Diana", ["ap"], False, True, True, False, False),
-    Champion("Dr. Mundo", ["ap"], True, False, False, False, False),
-    Champion("Draven", ["ad"], False, False, False, True, False),
-    Champion("Elise", ["ap"], False, True, False, False, False),
-    Champion("Renata Glasc",["ap"],False,False,False,False,True),
-    Champion("Bel Veth",["ad"],False,True,False,False,False),
-    Champion("Nillah",["ad"],False,True,False,True,False),
+    Champion("Zeri", ["ad", "ap"], ["mid", "bot"]),
+    Champion("Vex", ["ap"], ["mid", "bot", "sup"]),
+    Champion("Akshan", ["ad"], ["mid", "bot"]),
+    Champion("Samira", ["ad"], ["mid", "bot"]),
+    Champion("Seraphine", ["ap"], ["mid", "bot", "sup"]),
+    Champion("Rell", ["ap"], ["sup"]),
+    Champion("Viego", ["ad"], ["jg"]),
+    Champion("Gwen", ["ap"], ["top"]),
+    Champion("Pyke", ["ad"], ["mid", "sup"]),
+    Champion("Neeko", ["ap"], ["mid", "bot", "sup"]),
+    Champion("Sylas", ["ap"], ["top", "jg", "mid"]),
+    Champion("Yuumi", ["ap"], ["sup"]),
+    Champion("Qiyana", ["ad"], ["mid"]),
+    Champion("Senna", ["ad"], ["bot", "sup"]),
+    Champion("Aphelios", ["ad"], ["bot"]),
+    Champion("Sett", ["ad"], ["top", "sup"]),
+    Champion("Lillia", ["ap"], ["top", "jg", "mid"]),
+    Champion("Yone", ["ad"], ["top", "jg", "mid"]),
+    Champion("Taliyah", ["ap"], ["jg", "mid", "bot", "sup"]),
+    Champion("Kled", ["ad"], ["top"]),
+    Champion("Ivern", ["ap"], ["jg", "sup"]),
+    Champion("Camille", ["ad"], ["top", "jg"]),
+    Champion("Rakan", ["ap"], ["sup"]),
+    Champion("Xayah", ["ad"], ["bot"]),
+    Champion("Kayn", ["ad"], ["jg"]),
+    Champion("Ornn", ["ad"], ["top"]),
+    Champion("Zoe", ["ap"], ["mid", "bot", "sup"]),
+    Champion("Kai'sa", ["ad", "ap"], ["bot", "mid"]),
+    Champion("Yasuo", ["ad"], ["bot", "mid"]),
+    Champion("Yorick", ["ad"], ["top"]),
+    Champion("Zac", ["ap"], ["jg"]),
+    Champion("Zed", ["ad"], ["mid"]),
+    Champion("Ziggs", ["ap"], ["bot", "mid"]),
+    Champion("Zilean", ["ap"], ["mid", "sup"]),
+    Champion("Zyra", ["ap"], ["mid", "sup"]),
+    Champion("Bard", ["ap"], ["sup"]),
+    Champion("Ekko", ["ap"], ["jg", "mid"]),
+    Champion("Tahm kench", ["ap"], ["top", "sup"]),
+    Champion("Kindred", ["ad"], ["jg", "mid", "bot"]),
+    Champion("Illaoi", ["ad"], ["top"]),
+    Champion("Jhin", ["ad"], ["bot"]),
+    Champion("Aurelion Sol", ["ap"], ["mid", "bot", "sup"]),
+    Champion("Twitch", ["ad", "ap"], ["bot"]),
+    Champion("Udyr", ["ad", "ap"], ["jg"]),
+    Champion("Urgot", ["ad"], ["top"]),
+    Champion("Varus", ["ad", "ap"], ["bot", "mid"]),
+    Champion("Vayne", ["ad"], ["top", "bot"]),
+    Champion("Veigar", ["ap"], ["top", "mid", "bot"]),
+    Champion("Vel'Koz", ["ap"], ["mid", "sup"]),
+    Champion("Vi", ["ad"], ["top", "jg"]),
+    Champion("Viktor", ["ap"], ["mid"]),
+    Champion("Vladimir", ["ap"], ["top", "mid"]),
+    Champion("Volibear", ["ad", "ap"], ["top", "jg"]),
+    Champion("Warwick", ["ad"], ["top", "jg"]),
+    Champion("Wukong", ["ad"], ["top", "jg", "mid"]),
+    Champion("Xerath", ["ap"], ["mid", "sup"]),
+    Champion("Xin Zhao", ["ad"], ["top", "jg", "mid"]),
+    Champion("Swain", ["ap"], ["top", "mid", "bot", "sup"]),
+    Champion("Syndra", ["ap"], ["bot", "mid"]),
+    Champion("Talon", ["ad"], ["mid"]),
+    Champion("Taric", ["ap"], ["top", "sup", "sup"]),
+    Champion("Teemo", ["ap"], ["top", "bot", "sup"]),
+    Champion("Thresh", ["ap"], ["sup"]),
+    Champion("Tristana", ["ad"], ["bot"]),
+    Champion("Trundle", ["ad"], ["top", "jg"]),
+    Champion("Tryndamere", ["ad"], ["top"]),
+    Champion("Twisted Fate", ["ad", "ap"], ["bot", "mid"]),
+    Champion("Renekton", ["ad"], ["top", "mid"]),
+    Champion("Rengar", ["ad"], ["jg"]),
+    Champion("Riven", ["ad"], ["top"]),
+    Champion("Rumble", ["ap"], ["top", "mid"]),
+    Champion("Ryze", ["ap"], ["bot", "mid"]),
+    Champion("Sejuani", ["ap"], ["top", "jg"]),
+    Champion("Shaco", ["ad", "ap"], ["jg"]),
+    Champion("Shen", ["ad"], ["top", "sup"]),
+    Champion("Shyvana", ["ad", "ap"], ["jg"]),
+    Champion("Singed", ["ap"], ["top"]),
+    Champion("Sion", ["ad"], ["top"]),
+    Champion("Sivir", ["ad"], ["bot", "mid"]),
+    Champion("Skarner", ["ad", "ap"], ["jg"]),
+    Champion("Sona", ["ap"], ["mid", "bot", "sup"]),
+    Champion("Soraka", ["ap"], ["sup"]),
+    Champion("Mordekaiser", ["ap"], ["top"]),
+    Champion("Morgana", ["ap"], ["mid", "sup"]),
+    Champion("Nami", ["ap"], ["sup"]),
+    Champion("Nasus", ["ad", "ap"], ["top"]),
+    Champion("Nautilus", ["ap"], ["sup"]),
+    Champion("Nidalee", ["ap"], ["jg", "mid", "bot", "sup"]),
+    Champion("Nocturne", ["ad"], ["top", "jg", "mid"]),
+    Champion("Nunu", ["ap"], ["top", "jg", "mid"]),
+    Champion("Olaf", ["ad"], ["top", "jg"]),
+    Champion("Orianna", ["ap"], ["mid", "bot", "sup"]),
+    Champion("Pantheon", ["ad"], ["top", "jg", "mid", "sup"]),
+    Champion("Poppy",["ad"], ["top", "jg", "sup"]),
+    Champion("Quinn", ["ad"], ["top", "bot"]),
+    Champion("Rammus", ["ap"], ["jg"]),
+    Champion("Rek'Sai", ["ad"], ["jg"]),
+    Champion("Leona", ["ad", "ap"], ["sup"]),
+    Champion("Lissandra", ["ap"], ["bot", "mid"]),
+    Champion("Lucian", ["ad"], ["bot", "mid"]),
+    Champion("Lulu", ["ad", "ap"], ["mid", "bot", "sup"]),
+    Champion("Lux", ["ap"], ["mid", "bot", "sup"]),
+    Champion("Malphite", ["ap"], ["top"]),
+    Champion("Malzahar", ["ap"], ["mid"]),
+    Champion("Maokai", ["ap"], ["top", "sup"]),
+    Champion("Master Yi", ["ad"], ["jg"]),
+    Champion("Miss Fortune", ["ad"], ["bot"]),
+    Champion("Karma", ["ap"], ["mid", "sup"]),
+    Champion("Karthus", ["ap"], ["jg", "mid", "bot"]),
+    Champion("Kassadin", ["ap"], ["mid"]),
+    Champion("Katarina", ["ad", "ap"], ["mid"]),
+    Champion("Kayle", ["ad", "ap"], ["top", "mid", "sup"]),
+    Champion("Kennen", ["ap"], ["top", "mid", "bot"]),
+    Champion("Kha'Zix", ["ad"], ["jg"]),
+    Champion("Kog'Maw", ["ad", "ap"], ["bot", "mid"]),
+    Champion("LeBlanc", ["ap"], ["mid"]),
+    Champion("Lee Sin", ["ad"], ["jg", "sup"]),
+    Champion("Evelynn", ["ap"], ["jg"]),
+    Champion("Ezreal", ["ad", "ap"], ["bot", "mid"]),
+    Champion("Fiddlesticks", ["ap"], ["jg"]),
+    Champion("Fiora", ["ad"], ["top"]),
+    Champion("Fizz", ["ap"], ["mid"]),
+    Champion("Galio", ["ap"], ["top", "mid", "sup"]),
+    Champion("Gangplank", ["ad"], ["top"]),
+    Champion("Garen", ["ad"], ["top"]),
+    Champion("Gnar", ["ad"], ["top", "bot"]),
+    Champion("Gragas", ["ap"], ["jg"]),
+    Champion("Graves", ["ad"], ["jg"]),
+    Champion("Hecarim", ["ad"], ["jg"]),
+    Champion("Heimerdinger", ["ap"], ["bot", "mid"]),
+    Champion("Irelia", ["ad"], ["top", "mid"]),
+    Champion("Janna", ["ap"], ["sup"]),
+    Champion("Jarvan IV", ["ad"], ["jg"]),
+    Champion("Jax", ["ad"], ["top"]),
+    Champion("Jayce", ["ad"], ["top", "mid", "bot"]),
+    Champion("Jinx", ["ad"], ["bot"]),
+    Champion("Kalista", ["ad"], ["bot"]),
+    Champion("Aatrox", ["ad"], ["top"]),
+    Champion("Ahri", ["ap"], ["mid", "sup"]),
+    Champion("Akali", ["ap"], ["top", "mid"]),
+    Champion("Alistar", ["ap"], ["sup"]),
+    Champion("Amumu", ["ap"], ["top", "jg", "sup"]),
+    Champion("Anivia", ["ap"], ["mid", "bot", "sup"]),
+    Champion("Annie", ["ap"], ["mid", "sup"]),
+    Champion("Ashe", ["ad"], ["bot", "sup"]),
+    Champion("Azir", ["ap"], ["mid"]),
+    Champion("Blitzcrank", ["ap"], ["sup"]),
+    Champion("Brand", ["ap"], ["mid", "sup"]),
+    Champion("Braum", ["ap"], ["sup"]),
+    Champion("Caitlyn", ["ad"], ["bot"]),
+    Champion("Cassiopeia", ["ap"], ["mid", "bot"]),
+    Champion("Cho'Gath", ["ap"], ["top"]),
+    Champion("Corki", ["ad", "ap"], ["mid", "bot"]),
+    Champion("Darius", ["ad"], ["top"]),
+    Champion("Diana", ["ap"], ["jg", "mid"]),
+    Champion("Dr. Mundo", ["ap"], ["top"]),
+    Champion("Draven", ["ad"], ["bot"]),
+    Champion("Elise", ["ap"], ["jg"]),
+    Champion("Renata Glasc",["ap"], ["sup"]),
+    Champion("Bel Veth",["ad"], ["jg"]),
+    Champion("Nillah",["ad"], ["jg", "bot"]),
     
-]
+]  
 
 loop = ' '
 while loop != "N":
@@ -214,63 +210,63 @@ Your choice: ''')
 
     if role == "1" and damage_type_choice == "3":
         for i in list_of_champions:
-            if i.top == True:
+            if "top" in i.lane:
                 possible_choices.append(i.name)
     elif role == "1" and damage_type_choice == "1":
         for i in list_of_champions:
-            if i.top == True and "ap" in i.damage_type:
+            if "top" in i.lane and "ap" in i.damage_type:
                 possible_choices.append(i.name)
     elif role == "1" and damage_type_choice == "2":
         for i in list_of_champions:
-            if i.top == True and "ad" in i.damage_type:
+            if "top" in i.lane and "ad" in i.damage_type:
                 possible_choices.append(i.name)
     elif role == "2" and damage_type_choice == "3":
         for i in list_of_champions:
-            if i.jg == True:
+            if "jg" in i.lane:
                 possible_choices.append(i.name)
     elif role == "2" and damage_type_choice == "1":
         for i in list_of_champions:
-            if i.jg == True and "ap" in i.damage_type:
+            if "jg" in i.lane and "ap" in i.damage_type:
                 possible_choices.append(i.name)
     elif role == "2" and damage_type_choice == "2":
         for i in list_of_champions:
-            if i.jg == True and "ad" in i.damage_type:
+            if "jg" in i.lane and "ad" in i.damage_type:
                 possible_choices.append(i.name)
     elif role == "3" and damage_type_choice == "3":
         for i in list_of_champions:
-            if i.mid == True:
+            if "mid" in i.lane:
                 possible_choices.append(i.name)
     elif role == "3" and damage_type_choice == "1":
         for i in list_of_champions:
-            if i.mid == True and "ap" in i.damage_type:
+            if "mid" in i.lane and "ap" in i.damage_type:
                 possible_choices.append(i.name)
     elif role == "3" and damage_type_choice == "2":
         for i in list_of_champions:
-            if i.mid == True and "ad" in i.damage_type:
+            if "mid" in i.lane and "ad" in i.damage_type:
                 possible_choices.append(i.name)
     elif role == "4" and damage_type_choice == "3":
         for i in list_of_champions:
-            if i.bot == True:
+            if "bot" in i.lane:
                 possible_choices.append(i.name)
     elif role == "4" and damage_type_choice == "1":
         for i in list_of_champions:
-            if i.bot == True and "ap" in i.damage_type:
+            if "bot" in i.lane and "ap" in i.damage_type:
                 possible_choices.append(i.name)
     elif role == "4" and damage_type_choice == "2":
         for i in list_of_champions:
-            if i.bot == True and "ad" in i.damage_type:
+            if "bot" in i.lane and "ad" in i.damage_type:
                 possible_choices.append(i.name)
     elif role == "5" and damage_type_choice == "3":
         for i in list_of_champions:
-            if i.sup == True:
+            if "sup" in i.lane:
                 possible_choices.append(i.name)
     elif role == "5" and damage_type_choice == "1":
         for i in list_of_champions:
-            if i.sup == True and "ap" in i.damage_type:
+            if "sup" in i.lane and "ap" in i.damage_type:
                 possible_choices.append(i.name)
     elif role == "5" and damage_type_choice == "2":
         for i in list_of_champions:
-            if i.sup == True and "ad" in i.damage_type:
+            if "sup" in i.lane and "ad" in i.damage_type:
                 possible_choices.append(i.name)
     else:
         for i in list_of_champions:
