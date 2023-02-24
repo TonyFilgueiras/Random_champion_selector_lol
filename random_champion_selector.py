@@ -1,4 +1,4 @@
-from random import randint
+import random
 
 class Champion:
     def __init__(self, name, damage_type:list, lane:list):
@@ -8,6 +8,9 @@ class Champion:
 
 def error():
     print("Insert a valid input!!")
+
+
+print('------------------------------------------')
 
 list_of_champions = [
     Champion("Zeri", ["ad", "ap"], ["mid", "bot"]),
@@ -83,8 +86,8 @@ list_of_champions = [
     Champion("Rumble", ["ap"], ["top", "mid"]),
     Champion("Ryze", ["ap"], ["bot", "mid"]),
     Champion("Sejuani", ["ap"], ["top", "jg"]),
-    Champion("Shaco", ["ad", "ap"], ["jg"]),
-    Champion("Shen", ["ad"], ["top", "sup"]),
+    Champion("Shaco", ["ad", "ap"],["sup","jg"]),
+    Champion("Shen", ["ad"], ["top", "sup",]),
     Champion("Shyvana", ["ad", "ap"], ["jg"]),
     Champion("Singed", ["ap"], ["top"]),
     Champion("Sion", ["ad"], ["top"]),
@@ -268,6 +271,21 @@ Your choice: ''')
         for i in list_of_champions:
             if "sup" in i.lane and "ad" in i.damage_type:
                 possible_choices.append(i.name)
+    elif role == "6" and damage_type_choice == "3":
+        for i in list_of_champions:
+            possible_choices.append(i.name)
+
+    elif role == "6" and damage_type_choice == "1":
+        for i in list_of_champions:
+            if "ap" in i.damage_type:
+                possible_choices.append(i.name)
+
+    elif role == "6" and damage_type_choice == "2":
+        for i in list_of_champions:
+            if "ad" in i.damage_type:
+                possible_choices.append(i.name)
+
+    
     else:
         for i in list_of_champions:
             possible_choices.append(i.name)
@@ -277,6 +295,6 @@ Your choice: ''')
 {possible_choices}
 -------------------------------------------------------------------------------------------------------''')
 
-    print(f"Your champion --> {possible_choices[randint(0, len(possible_choices))]}")
+    print(f"Your champion --> {possible_choices[random.randint(0, len(possible_choices))]}")
 
     loop = input("Go again??: [Y/N] ").upper()
