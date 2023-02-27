@@ -171,6 +171,7 @@ list_of_champions = [
     Champion("Renata Glasc",["ap"], ["sup"]),
     Champion("Bel Veth",["ad"], ["jg"]),
     Champion("Nillah",["ad"], ["jg", "bot"]),
+    Champion("K'Sante",["ad"], ["top"]),
     
 ]  
 
@@ -267,6 +268,14 @@ Your choice: ''')
     elif role == "5" and damage_type_choice == "2":
         for i in list_of_champions:
             if "sup" in i.lane and "ad" in i.damage_type:
+                possible_choices.append(i.name)
+    elif role == "6" and damage_type_choice == "1":
+        for i in list_of_champions:
+            if "ap" in i.damage_type:
+                possible_choices.append(i.name)
+    elif role == "6" and damage_type_choice == "2":
+        for i in list_of_champions:
+            if "ad" in i.damage_type:
                 possible_choices.append(i.name)
     else:
         for i in list_of_champions:
