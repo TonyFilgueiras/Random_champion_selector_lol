@@ -172,6 +172,9 @@ list_of_champions = [
     Champion("Bel Veth",["ad"], ["jg"]),
     Champion("Nillah",["ad"], ["jg", "bot"]),
     Champion("K'Sante",["ad"], ["top"]),
+    Champion("Millio", ["ap"], ["sup"]),
+    Champion("Naafiri", ["ad"], ["jg", "mid"]),
+    Champion("Briar", ["ad"], ["jg", "mid"]),
     
 ]  
 
